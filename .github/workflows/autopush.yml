@@ -1,23 +1,30 @@
-name: Auto Push to GitHub
+name: Auto Commit and Push
 
 on:
   push:
     branches:
       - main
+  schedule:
+    - cron: "*/5 * * * *"  # Runs every hour (adjust as needed)
+  workflow_dispatch:  # Allows manual triggering of the workflow
+
+permissions:
+  contents: write  # ✅ Grants write access for pushing commits
 
 jobs:
   auto-commit:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v3
         with:
-          persist-credentials: false
+          persist-credentials: false  # Prevents using default credentials
 
-      - name: Setup Git User
+      - name: Set Up Git User
         run: |
-          git config --global user.name "codewithaswinkumar"
-          git config --global user.email "aswinchappa123@gmail.com"
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
 
       - name: Authenticate with GitHub Token
         run: |
@@ -25,6 +32,6 @@ jobs:
 
       - name: Commit and Push Changes
         run: |
-          git add .github/workflows/autopush.yml
-          git commit -m "Fix GitHub Actions workflow" || echo "No changes to commit"
+          git add .
+          git commit -m "Automated commit from GitHub Actions" || echo "No changes to commit"
           git push origin main
