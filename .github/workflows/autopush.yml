@@ -21,6 +21,6 @@ jobs:
 
       - name: Commit and Push Changes
         run: |
-          git add .
-          git commit -m "Auto-updating code from local machine"
-          git push https://codewithaswinkumar:${{ secrets.GITHUB_TOKEN }}@github.com/codewithaswinkumar/SpringRequestBody.git main
+         git add .github/workflows/autopush.yml
+         git commit -m "Fix GitHub Actions workflow"
+         git push origin main
