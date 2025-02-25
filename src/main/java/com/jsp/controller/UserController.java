@@ -24,8 +24,8 @@ public class UserController
 //	   u.setLoc("vizag");
 //	   	return u;	
 //   }
-   public void aswin()
-   {
-	   System.out.print("new method...!!!!");
-   }
+//   public void aswin()
+//   {
+//	   System.out.print("new method...!!!!");
+//   }
 }
