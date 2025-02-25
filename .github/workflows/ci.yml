@@ -26,10 +26,10 @@ jobs:
         run: mvn clean install  # Builds the project and runs tests
 
       - name: Upload Build Artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4  # Update to latest version
         with:
           name: spring-boot-app
-          path: target/*.jar  # Uploads the JAR file
+          path: target/*.jar
 
   deploy:
     needs: build  # Runs only after the build job succeeds
