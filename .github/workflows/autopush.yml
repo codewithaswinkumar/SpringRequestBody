@@ -1,0 +1,26 @@
+name: Auto Push to GitHub
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  auto-commit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+        with:
+          persist-credentials: false
+
+      - name: Setup Git User
+        run: |
+          git config --global user.name "codewithaswinkumar"
+          git config --global user.email "aswinchappa123@gmail.com"
+
+      - name: Commit and Push Changes
+        run: |
+          git add .
+          git commit -m "Auto-updating code from local machine"
+          git push https://codewithaswinkumar:${{ secrets.GITHUB_TOKEN }}@github.com/codewithaswinkumar/SpringRequestBody.git main
